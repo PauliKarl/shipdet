@@ -11,9 +11,19 @@ model_name={
 }
 
 def get_model_object_detection(num_classes, model_dir = None, backbone_name = 'resnet50',**kwargs):
-    # load an instance segmentation model pre-trained pre-trained on COCO
-    # "model_dir" is the path to save the pretrained model, if there is no any file, it will be downloaded from web
-    
+    """load an instance segmentation model pre-trained pre-trained on COCO
+    Args:
+        num_classes: 目标类别个数 + 1(bg)
+        model_dir: the pretrained model dir,if there is no any file, it will be downloaded from web 
+        
+        The default value of `model_dir` is ``$TORCH_HOME/checkpoints`` where
+        environment variable ``$TORCH_HOME`` defaults to ``$XDG_CACHE_HOME/torch``.
+        ``$XDG_CACHE_HOME`` follows the X Design Group specification of the Linux
+        filesytem layout, with a default value ``~/.cache`` if not set
+        
+    Return:
+        model
+    """
     model = shipdet.model.mask_rcnn.__dict__[model_name[backbone_name]](
                                                             pretrained=False, 
                                                             num_classes=num_classes,

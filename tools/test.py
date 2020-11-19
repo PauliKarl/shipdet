@@ -92,15 +92,18 @@ def test_batch_size(img_file,
                     flag='AUTO',
                     paramsPath=None):
     #测试单景遥感影像
-    '''
-    #args：
+    """ship detection on TIFF/TIF images  ~10GB, using dataloader
+    Args：
         img_file:遥感影像文件路径
         model_file: 模型文件
         result_dir: 结果文件存放路径
         score_th: 置信度分数阈值
         pretrained_model_dir: 预训练模型路径
-        flag: 选择gpu/cpu、禁用CUDNN
-    '''
+        flag: 选择gpu/cpu、禁用CUDNN---['AUTO', 'ONLY_CPU', 'NO_CUDNN']
+
+    outputs:
+        ship crop images + result xml
+    """
     if img_file is None:
         #print("Please input a test image file")
         print("请选择待检测影像")
